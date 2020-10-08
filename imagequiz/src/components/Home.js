@@ -27,7 +27,7 @@ class Home extends React.Component {
     handleChange = (event) => {
         const value = event.target.value;
         const name = event.target.name
-        this.setState({[name]: value})
+        this.setState({username: value})
     }
 
     body = () => {
@@ -57,8 +57,8 @@ class Home extends React.Component {
                 <div className="loginButton">
                 {this.state.authenticated ? this.state.username 
                 : <button onClick={this.login}>Login</button>}
-                {this.body()}
                 </div>
+                {this.body()}
             </div>
         );
     }
