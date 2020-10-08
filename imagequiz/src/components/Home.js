@@ -1,9 +1,16 @@
 import React from 'react'
 
 class Home extends React.Component {
+    
+    login = () => {
+
+    }
     render() {
         return (
-            <div>Hello from the homepage!</div>
+            <div>
+                <button onClick={this.login}>Login</button>
+                Hello from the homepage!
+            </div>
         );
     }
 }
