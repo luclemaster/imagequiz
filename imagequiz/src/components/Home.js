@@ -43,22 +43,22 @@ class Home extends React.Component {
             <div className="pictureText">Hello from the homepage!
             <table>
             <tr>
-                <td className="pictureText">
+                <td>
                 <img src={cherry}></img>
                 <div className="pictureText">cherry
                 </div>
                 </td>
-                <td className="pictureText">
+                <td>
                 <img src={daffodil}></img>
                 <div className="pictureText">daffodil
                 </div>
                 </td>
-                <td className="pictureText">
+                <td>
                 <img src={daisy}></img>
                 <div className="pictureText">daisy
                 </div>
-                </td >
-                <td className="pictureText">
+                </td>
+                <td>
                 <img src={lily}></img>
                 <div className="pictureText">lily
                 </div>
