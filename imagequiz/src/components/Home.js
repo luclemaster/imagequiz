@@ -15,7 +15,8 @@ class Home extends React.Component {
         this.state ={
             username: '',
             showLoginForm: false,
-            authenticated: false
+            authenticated: false,
+            quiz: false
         };
     }
     login = () => {
