@@ -60,7 +60,7 @@ class Home extends React.Component {
     returnHome = () => {
         this.setState({quiz:false})
     }
-
+ 
     body = () => {
         return(
             <div className="pictureText">Hello from the homepage!
