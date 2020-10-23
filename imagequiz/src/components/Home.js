@@ -1,6 +1,6 @@
 import React from 'react';
 import './Home.css';
-import cherry from './cherryblossom.png'
+import cherryblossom from './cherryblossom.png'
 import daffodil from './daffodil.png'
 import daisy from './daisy.jpg'
 import lily from './lily.jpg'
@@ -16,7 +16,9 @@ class Home extends React.Component {
             username: '',
             showLoginForm: false,
             authenticated: false,
-            quiz: false
+            quiz: false, 
+            correctAnswers : 0,
+            questionNum: 0
         };
     }
     login = () => {
@@ -36,7 +38,27 @@ class Home extends React.Component {
     handleChange = (event) => {
         const value = event.target.value;
         const name = event.target.name;
-        this.setState({username: value})
+        this.setState({username: value});
+    }
+    startQuiz = () => {
+        if(this.state.authenticated)
+        {
+            this.setState({quiz: true});
+        }
+    }
+    correct = () => {
+        this.setState({correctAnswers: this.state.correctAnswers + 1});
+        this.setState({questionNum: this.state.questionNum + 1});
+    }
+    incorrect = () => {
+        this.setState({questionNum: this.state.questionNum + 1});
+    }
+    reset = () => {
+        this.setState({questionNum: 0});
+        this.setState({correctAnswers: 0});
+    }
+    returnHome = () => {
+        this.setState({quiz:false})
     }
 
     body = () => {
@@ -45,44 +67,44 @@ class Home extends React.Component {
             <table>
             <tr>
                 <td>
-                <img src={cherry}></img>
+                <img src={cherryblossom} onClick={this.startQuiz}></img>
                 <div className="pictureText">cherry
                 </div>
                 </td>
                 <td>
-                <img src={daffodil}></img>
+                <img src={daffodil} onClick={this.startQuiz}></img>
                 <div className="pictureText">daffodil
                 </div>
                 </td>
                 <td>
-                <img src={daisy}></img>
+                <img src={daisy} onClick={this.startQuiz}></img>
                 <div className="pictureText">daisy
                 </div>
                 </td>
                 <td>
-                <img src={lily}></img>
+                <img src={lily} onClick={this.startQuiz}></img>
                 <div className="pictureText">lily
                 </div>
                 </td>
             </tr>
             <tr>
                 <td>
-                <img src={rose}></img>
+                <img src={rose} onClick={this.startQuiz}></img>
                 <div className="pictureText">rose
                 </div>
                 </td>
                 <td>
-                <img src={sunflower}></img>
+                <img src={sunflower} onClick={this.startQuiz}></img>
                 <div className="pictureText">sunflower
                 </div>
                 </td>
                 <td>
-                <img src={tulip}></img>
+                <img src={tulip} onClick={this.startQuiz}></img>
                 <div className="pictureText">tulip
                 </div>
                 </td>
                 <td>
-                <img src={waterlily}></img>
+                <img src={waterlily} onClick={this.startQuiz}></img>
                 <div className="pictureText">waterlily
                 </div>
                 </td>
@@ -107,6 +129,91 @@ class Home extends React.Component {
                     </form>
                 </div>
             );
+        }
+        if((this.state.authenticated && this.state.quiz))
+        {
+            if(this.state.questionNum == 0)
+            {
+                return(
+                    <div>
+                        <img src={cherryblossom}></img>
+                        <button onClick={this.correct}>cherryblossom</button>
+                        <button onClick={this.incorrect}>daffodil</button>
+                        <button onClick={this.incorrect}>lily</button>
+                        <button onClick={this.incorrect}>daisy</button>
+                    </div>
+                )
+            }
+            else if(this.state.questionNum == 1)
+            {
+                return(
+                    <div>
+                        <img src={daffodil}></img>
+                        <button onClick={this.incorrect}>rose</button>
+                        <button onClick={this.correct}>daffodil</button>
+                        <button onClick={this.incorrect}>lily</button>
+                        <button onClick={this.incorrect}>tulip</button>
+                    </div>
+                )
+            }
+            else if(this.state.questionNum == 2)
+            {
+                return(
+                    <div>
+                        <img src={sunflower}></img>
+                        <button onClick={this.incorrect}>daffodil</button>
+                        <button onClick={this.incorrect}>lily</button>
+                        <button onClick={this.correct}>sunflower</button>
+                        <button onClick={this.incorrect}>waterlily</button>
+                    </div>
+                )
+            }
+            else if(this.state.questionNum == 3)
+            {
+                return(
+                    <div>
+                        <img src={daisy}></img>
+                        <button onClick={this.incorrect}>cherryblossom</button>
+                        <button onClick={this.correct}>daisy</button>
+                        <button onClick={this.incorrect}>sunflower</button>
+                        <button onClick={this.incorrect}>tulip</button>
+                    </div>
+                )
+            }
+            else if(this.state.questionNum == 4)
+            {
+                return(
+                    <div>
+                        <img src={tulip}></img>
+                        <button onClick={this.incorrect}>rose</button>
+                        <button onClick={this.incorrect}>cherryblossom</button>
+                        <button onClick={this.correct}>tulip</button>
+                        <button onClick={this.incorrect}>daisy</button>
+                    </div>
+                )
+            }
+            else if(this.state.questionNum == 5)
+            {
+                return(
+                    <div>
+                        <img src={rose}></img>
+                        <button onClick={this.incorrect}>waterlily</button>
+                        <button onClick={this.incorrect}>daisy</button>
+                        <button onClick={this.incorrect}>tulip</button>
+                        <button onClick={this.correct}>rose</button>
+                    </div>
+                )
+            }
+            else
+            {
+                return(
+                    <div>
+                        correctAnswers: {this.state.correctAnswers} /6;
+                        <button onClick={this.reset}>Retry</button>;
+                        <button onClick={this.returnHome}>Home</button>
+                    </div>
+                )
+            }
         }
         return (
             <div>
