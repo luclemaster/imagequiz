@@ -26,7 +26,6 @@ class Home extends React.Component {
             showLoginForm: true
         });
     }
-
     onSubmit = (event) => {
         if(this.state.username.trim().length > 0)
         {
@@ -41,10 +40,7 @@ class Home extends React.Component {
         this.setState({username: value});
     }
     startQuiz = () => {
-        if(this.state.authenticated)
-        {
-            this.setState({quiz: true});
-        }
+        this.setState({quiz: true});
     }
     correct = () => {
         this.setState({correctAnswers: this.state.correctAnswers + 1});
@@ -130,7 +126,7 @@ class Home extends React.Component {
                 </div>
             );
         }
-        if((this.state.authenticated && this.state.quiz))
+        if( this.state.quiz)
         {
             if(this.state.questionNum == 0)
             {
